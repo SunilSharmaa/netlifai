@@ -2,6 +2,7 @@ import React from "react";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Header from "./src/components/Header";
 import Browse from "./src/components/Browse";
+import Login from "./src/pages/Login";
 
 const Layout = () => {
   return (
@@ -18,8 +19,8 @@ const appRoute = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: "/header",
-        element: <Header />,
+        path: "/",
+        element: <Login />,
       },
       {
         path: "/browse",
