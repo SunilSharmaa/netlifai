@@ -1,22 +1,75 @@
 import { useRef, useState } from "react";
 import validateCredential from "../utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import auth from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const navigate = useNavigate();
   const email = useRef(null);
   const password = useRef(null);
   const userName = useRef(null);
 
   const setSignInSignUp = () => {
-    setErrorMessage(null)
+    setErrorMessage(null);
     setIsSignIn(!isSignIn);
   };
 
   const onSubmitForm = (userName, email, password) => {
-    let error = validateCredential(userName?.current?.value, email?.current?.value, password?.current?.value);
-    setErrorMessage(error);
-  }
+    let message = validateCredential(
+      userName?.current?.value,
+      email?.current?.value,
+      password?.current?.value
+    );
+    setErrorMessage(message);
+    if (message) return;
+
+    if (!isSignIn) {
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log(user);
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, "-", errorMessage);
+          setErrorMessage(errorCode);
+          // ..
+        });
+    } else {
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user.email, "logged in successfully");
+          navigate("/browse");
+
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, "----");
+          setErrorMessage(errorCode);
+        });
+    }
+  };
   return (
     <div className="relative">
       <img
@@ -56,9 +109,12 @@ const Login = () => {
           placeholder="Password"
         />
         {errorMessage !== null && (
-            <p className="text-red-600 mt-4">{errorMessage}</p>
+          <p className="text-red-600 mt-4">{errorMessage}</p>
         )}
-        <button onClick={()=>onSubmitForm(userName, email, password)} className="text-white bg-red-600 w-full mt-14 p-2 rounded cursor-pointer">
+        <button
+          onClick={() => onSubmitForm(userName, email, password)}
+          className="text-white bg-red-600 w-full mt-14 p-2 rounded cursor-pointer"
+        >
           {isSignIn ? "Sign In" : "Sign Up"}
         </button>
         <span className="text-white mt-6 inline-block">
