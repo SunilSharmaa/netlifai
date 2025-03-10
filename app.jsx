@@ -21,7 +21,7 @@ const Layout = () => {
             // User is signed out
             // ...
             navigate("/")
-            console.log(user?.email, "logout");
+            // console.log(user?.email, "logout");
           }
         });
         return ()=> unsubscribe();
