@@ -58,7 +58,7 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user.email, "logged in successfully");
-          navigate("/browse");
+        //   navigate("/browse");
 
           // ...
         })
