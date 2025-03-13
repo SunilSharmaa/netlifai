@@ -23,8 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
-src/utils/firebase.js
-**/firebase.js
 firebase.json
 database.rules.json
 .firebaserc
+
+.env
