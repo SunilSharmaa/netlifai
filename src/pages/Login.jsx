@@ -3,12 +3,12 @@ import validateCredential from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  updateProfile
+  updateProfile,
 } from "firebase/auth";
 import auth from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addUser } from "../components/redux/userSlice";
+import { addUser } from "../redux/userSlice";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -66,8 +66,6 @@ const Login = () => {
           setErrorMessage(errorCode);
           // ..
         });
-
-      
     } else {
       signInWithEmailAndPassword(
         auth,

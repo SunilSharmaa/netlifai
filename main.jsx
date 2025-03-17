@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./app";
-import appStore from "./src/components/redux/appStore";
+import appStore from "./src/redux/appStore";
 import { Provider } from "react-redux";
 
 let Layout = () => {

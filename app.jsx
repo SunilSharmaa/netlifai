@@ -6,12 +6,12 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Header from "./src/components/Header";
-import Browse from "./src/components/Browse";
+import Browse from "./src/pages/Browse";
 import Login from "./src/pages/Login";
 import { onAuthStateChanged } from "firebase/auth";
 import auth from "./src/utils/firebase";
 import { useDispatch } from "react-redux";
-import { addUser, removeUser } from "./src/components/redux/userSlice";
+import { addUser, removeUser } from "./src/redux/userSlice";
 
 const Layout = () => {
   let dispatch = useDispatch();
