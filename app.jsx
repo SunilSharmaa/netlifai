@@ -15,7 +15,6 @@ import { addUser, removeUser } from "./src/redux/userSlice";
 
 const Layout = () => {
   let dispatch = useDispatch();
-  console.log(auth);
   const navigate = useNavigate();
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -23,9 +22,7 @@ const Layout = () => {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
         const { uid, displayName, email } = user;
-        console.log(uid, displayName, email);
         dispatch(addUser({ uid: uid, displayName: displayName, email: email }));
-        console.log("onAuthStateChanged", user);
         navigate("/browse");
         // ...
       } else {

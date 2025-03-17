@@ -1,5 +1,12 @@
+import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
+
 const HeroSection = () => {
-  return <h1 className="text-4xl"> Hero Section</h1>;
+    let nowPlayingMovies = useNowPlayingMovies();
+  return (
+    <>
+
+    </>
+  )
 };
 
 export default HeroSection;
