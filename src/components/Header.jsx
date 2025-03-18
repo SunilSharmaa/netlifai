@@ -3,14 +3,16 @@ import auth from "../utils/firebase";
 import { signOut } from "firebase/auth";
 
 const Header = () => {
-    const userSignOut = ()=> {
-        signOut(auth).then(() => {
-            // Sign-out successful.
-            console.log("user signout successfully");
-          }).catch((error) => {
-            // An error happened.
-          });
-    }
+  const userSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        console.log("user signout successfully");
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
   return (
     <div className="absolute w-full pl-16 pt-4 pb-8 bg-gradient-to-b from-black z-10 flex justify-between items-center">
       <img
@@ -20,7 +22,12 @@ const Header = () => {
       />
 
       <div className="pr-6">
-        <button className="bg-red-700 px-4 py-1 text-white rounded" onClick={userSignOut}>Sign out</button>
+        <button
+          className="bg-red-700 px-4 py-1 text-white rounded"
+          onClick={userSignOut}
+        >
+          Sign out
+        </button>
       </div>
     </div>
   );

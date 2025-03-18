@@ -1,3 +1,4 @@
+
 export const OPTIONS = {
   method: "GET",
   headers: {
@@ -6,4 +7,9 @@ export const OPTIONS = {
   },
 };
 
+
 export const NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
+
+export const VIDEO_URL = (movieId)=> {
+    return `https://api.themoviedb.org/3/movie/${movieId}/videos`;
+}

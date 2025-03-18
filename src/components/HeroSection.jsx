@@ -1,12 +1,14 @@
-import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
+import BackgroundVideo from "./BackgroundVideo";
+import VideoTitle from "./VideoTitle";
+import { useSelector } from "react-redux";
 
 const HeroSection = () => {
-    let nowPlayingMovies = useNowPlayingMovies();
   return (
     <>
-
+      <BackgroundVideo />
+      <VideoTitle />
     </>
-  )
+  );
 };
 
 export default HeroSection;
