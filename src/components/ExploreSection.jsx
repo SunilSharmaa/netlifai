@@ -1,5 +1,12 @@
+import usePopularMovies from "../hooks/usePopularMovies";
+
 const ExploreSection = () => {
-  return <h1 className="text-4xl">Explore section</h1>;
-};
+  usePopularMovies();
+  return (
+    <>
+      
+    </>
+  )
+}
 
 export default ExploreSection;
