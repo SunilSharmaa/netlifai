@@ -3,10 +3,16 @@ import VideoTitle from "./VideoTitle";
 import { useSelector } from "react-redux";
 
 const HeroSection = () => {
+
+  const nowPlayingMovies = useSelector((store)=> store.movies.nowPlayingMovies);
+  if(!nowPlayingMovies) return;
+  
+  const {original_title, id, overview} = nowPlayingMovies[0];
+  
   return (
     <>
-      <BackgroundVideo />
-      <VideoTitle />
+      <BackgroundVideo movieId={id}/>
+      <VideoTitle title={original_title} overview={overview}/>
     </>
   );
 };
