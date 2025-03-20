@@ -13,6 +13,8 @@ export const POPULAR_MOVIES_URL = "https://api.themoviedb.org/3/movie/popular?la
 export const TOP_RATED_MOVIES_URL = "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
 export const UPCOMING_MOVIES_URL = "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1";
 
+export const IMAGE_CDN_LINK = "https://image.tmdb.org/t/p/w780";
+
 export const VIDEO_URL = (movieId)=> {
     return `https://api.themoviedb.org/3/movie/${movieId}/videos`;
 }

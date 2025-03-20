@@ -1,15 +1,22 @@
-import usePopularMovies from "../hooks/usePopularMovies";
-import useTopRatedMovies from "../hooks/useTopRatedMovies";
-import useUpcomingMovies from "../hooks/useUpcomingMovies";
+import { useSelector } from "react-redux";
+import MovieList from "./MovieList";
 
 const ExploreSection = () => {
-  usePopularMovies();
-  useTopRatedMovies();
-  useUpcomingMovies();
+  let movieCollection = useSelector((store)=> store.movies)
+  let {nowPlayingMovies, popularMovies, topRatedMovies, upComingMovies} = movieCollection;
+
+  // console.log(nowPlayingMovies);
+  // console.log(popularMovies);
+  // console.log(topRatedMovies);
+  // console.log(upComingMovies);
+
   return (
-    <>
-      
-    </>
+    <div className=" relative -mt-60">
+      <MovieList section={"Now Playing"} list={nowPlayingMovies}/>
+      <MovieList section={"Popular"} list={popularMovies}/>
+      <MovieList section={"Top Rated"} list={topRatedMovies}/>
+      <MovieList section={"Up-Coming"} list={upComingMovies}/>
+    </div>
   )
 }
 
