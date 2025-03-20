@@ -12,7 +12,7 @@ const Browse = () => {
   useTopRatedMovies();
   useUpComingMovies();
   return (
-    <div className="bg-neutral-900">
+    <div className="bg-neutral-900 pb-4">
       <HeroSection />
       <ExploreSection />
     </div>
