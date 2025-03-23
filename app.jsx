@@ -12,6 +12,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import auth from "./src/utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "./src/redux/userSlice";
+import AiMovieSearch from "./src/pages/AiMovieSearch";
 
 const Layout = () => {
   let dispatch = useDispatch();
@@ -56,6 +57,10 @@ const appRoute = createBrowserRouter([
         path: "/browse",
         element: <Browse />,
       },
+      {
+        path: "/aimoviesearch",
+        element: <AiMovieSearch />
+      }
     ],
   },
 ]);
