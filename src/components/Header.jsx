@@ -1,8 +1,13 @@
 import React from "react";
 import auth from "../utils/firebase";
 import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  let navigate = useNavigate();
+  const navigateToAiSearchPage = () => {
+    navigate("/aimoviesearch");
+  }
   const userSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -21,9 +26,10 @@ const Header = () => {
         alt="netflix logo"
       />
 
-      <div className="pr-6">
+      <div className="pr-6 space-x-4">
+        <button className="text-white bg-amber-600 px-4 py-1 rounded cursor-pointer" onClick={navigateToAiSearchPage}>AI Movie Search</button>
         <button
-          className="bg-red-700 px-4 py-1 text-white rounded"
+          className="bg-red-700 px-4 py-1 text-white rounded cursor-pointer"
           onClick={userSignOut}
         >
           Sign out
