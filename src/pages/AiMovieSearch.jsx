@@ -1,3 +1,5 @@
+import MovieSearchBox from "../components/MovieSearchBox"
+
 const AiMovieSearch = () => {
   return (
     <div>
@@ -7,6 +9,8 @@ const AiMovieSearch = () => {
         className="h-screen w-full"
       />
       <div className="absolute inset-0 bg-black opacity-75"></div>
+
+      {/* <MovieSearchBox /> */}
     </div>
   )
 }

@@ -5,6 +5,7 @@ const BackgroundVideo = ({ movieId }) => {
   let trailerKey = useSelector((store) => store?.movies?.trailerVideoKey?.key);
 
   if (!movieId) return;
+  console.log(trailerKey);
 
   useTrailerVideoKey(movieId);
 
