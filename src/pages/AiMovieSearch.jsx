@@ -10,7 +10,7 @@ const AiMovieSearch = () => {
       />
       <div className="absolute inset-0 bg-black opacity-75"></div>
 
-      {/* <MovieSearchBox /> */}
+      <MovieSearchBox />
     </div>
   )
 }
