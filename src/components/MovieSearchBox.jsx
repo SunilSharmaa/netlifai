@@ -1,10 +1,14 @@
 import { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { addInputText } from "../redux/geminiSlice";
 
 const MovieSearchBox = () => {
+  const dispatch = useDispatch();
   const inputText = useRef();
 
   const searchMovie = ()=> {
     console.log(inputText.current.value);
+    dispatch(addInputText(inputText.current.value))
   }
 
   return (
