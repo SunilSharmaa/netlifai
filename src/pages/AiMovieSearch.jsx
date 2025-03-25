@@ -1,4 +1,5 @@
 import MovieSearchBox from "../components/MovieSearchBox"
+import SearchResults from "../components/SearchResults"
 
 const AiMovieSearch = () => {
   return (
@@ -11,6 +12,7 @@ const AiMovieSearch = () => {
       <div className="absolute inset-0 bg-black opacity-75"></div>
 
       <MovieSearchBox />
+      <SearchResults />
     </div>
   )
 }
