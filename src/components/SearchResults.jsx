@@ -1,25 +1,17 @@
-import { useEffect } from "react";
-import AiModel from "../utils/gemini";
+import { useSelector } from "react-redux";
+import useSearchResults from "../hooks/useSearchResult"
+import MovieList from "./MovieList";
 
 const SearchResults = () => {
-    const generateResults = async() => {
-
-        const prompt = "best indian thriller movie";
-        const promptRule = ". give multiple movie , only gives name and nothing else for example - Avatar, Spider man - likes this in single line because after that i will split that in a array which  have coma";
-        const result = await AiModel.generateContent(prompt + promptRule);
-        const movieList = result.response.text().split(",")
-        console.log(movieList);
-    }
-
-    useEffect(()=> {
-        generateResults();
-    })
-
-    return (
-        <>
-        
-        </>
-    )
+    useSearchResults();
+    const {movieName, movieData} = useSelector(store => store.gemini);
+    if(!movieName && !movieData) return
+    console.log(movieName, movieData);
+  return (
+    <div className="bg-black/70 pt-2 mt-2">
+        {movieName.map((val, index)=> <MovieList key={val} section={val} list={movieData[index].results}/>)}
+    </div>
+  )
 }
 
-export default SearchResults;
+export default SearchResults
