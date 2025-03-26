@@ -18,3 +18,7 @@ export const IMAGE_CDN_LINK = "https://image.tmdb.org/t/p/w780";
 export const VIDEO_URL = (movieId)=> {
     return `https://api.themoviedb.org/3/movie/${movieId}/videos`;
 }
+
+export const SEARCH_MOVIE_URL = (movieName)=> {
+  return `https://api.themoviedb.org/3/search/movie?query=${movieName}&language=en-US&page=1`;
+}
