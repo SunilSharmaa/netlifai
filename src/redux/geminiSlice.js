@@ -6,6 +6,7 @@ const geminiSlice = createSlice({
         inputText : null,
         movieName : null,
         movieData : null,
+        isSearchPageActive : false,
     },
     reducers : {
         addInputText : (state, action)=> {
@@ -15,9 +16,12 @@ const geminiSlice = createSlice({
             const {movieName, movieData} = action.payload;
             state.movieName = movieName;
             state.movieData = movieData;
+        },
+        toggleSearchPageActive : (state)=> {
+            state.isSearchPageActive = !state.isSearchPageActive;
         }
     }
 })
 
-export const {addInputText, addMovieNameAndData} = geminiSlice.actions;
+export const {addInputText, addMovieNameAndData, toggleSearchPageActive} = geminiSlice.actions;
 export default geminiSlice.reducer;
