@@ -2,14 +2,21 @@ import React from "react";
 import auth from "../utils/firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleSearchPageActive } from "../redux/geminiSlice";
 
 const Header = () => {
+  let dispatch = useDispatch();
   let user = useSelector((state) => state?.user);
+  let isSearchPageActive = useSelector((state)=> state?.gemini?.isSearchPageActive);
 
   let navigate = useNavigate();
-  const navigateToAiSearchPage = () => {
-    navigate("/aimoviesearch");
+
+  const navigateToPage = () => {
+    dispatch(toggleSearchPageActive());
+
+    isSearchPageActive ? navigate("/browse") : navigate("/aimoviesearch");
+
   };
 
   const navigateToHome = () => {
@@ -36,12 +43,13 @@ const Header = () => {
       />
 
       <div className="pr-6 space-x-4">
-        <button
+        {user && <button
           className="text-white bg-amber-600 px-4 py-1 rounded cursor-pointer"
-          onClick={navigateToAiSearchPage}
+          onClick={navigateToPage}
         >
-          AI Movie Search
-        </button>
+          { isSearchPageActive ? "Home Page" : "AI Movie Search"}
+        </button>}
+        
         {user && (
           <button
             className="bg-red-700 px-4 py-1 text-white rounded cursor-pointer"
