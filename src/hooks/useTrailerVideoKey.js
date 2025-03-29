@@ -8,7 +8,6 @@ const useTrailerVideoKey = (movieId) => {
   let fetchVideoKey = async () => {
     let data = await fetch(VIDEO_URL(movieId), OPTIONS);
     let json = await data.json();
-    console.log(json.results);
 
     let filterData = json.results.find(
       (key) => key.type === "Trailer" && key.name === "Official Trailer"
@@ -16,7 +15,7 @@ const useTrailerVideoKey = (movieId) => {
 
     if(!filterData) {
       let backupKey = json.results.filter(key => key.type === "Trailer");
-      console.log(backupKey[0]);
+      
       dispatch(addTrailerVideoKey(backupKey[0]));
     } else {
       dispatch(addTrailerVideoKey(filterData));
