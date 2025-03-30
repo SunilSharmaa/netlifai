@@ -6,7 +6,6 @@ import {
   updateProfile,
 } from "firebase/auth";
 import auth from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../redux/userSlice";
 
@@ -89,17 +88,17 @@ const Login = () => {
     }
   };
   return (
-    <div className="relative">
+    <div className="relative h-full w-full">
       <img
         src="https://assets.nflxext.com/ffe/siteui/vlv3/04ef06cc-5f81-4a8e-8db0-6430ba4af286/web/IN-en-20250224-TRIFECTA-perspective_3a9c67b5-1d1d-49be-8499-d179f6389935_large.jpg"
         alt="background image"
-        className="h-screen w-full"
+        className="h-screen w-full object-cover object-center"
       />
 
-      <div className="absolute inset-0 bg-black opacity-60"></div>
+      <div className="absolute inset-0 bg-black opacity-85 sm:opacity-60"></div>
 
       <form
-        className="absolute top-[25%] left-1/2 -translate-x-1/2 w-100 bg-black/70 px-12 py-12 rounded"
+        className="absolute top-[25%] left-1/2 -translate-x-1/2 w-full  px-12 sm:py-20 sm:w-120 sm:bg-black/80 sm:rounded-lg sm:top-[20%]"
         action=""
         onSubmit={(e) => e.preventDefault()}
       >
