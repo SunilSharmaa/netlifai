@@ -11,7 +11,7 @@ const ExploreSection = () => {
   // console.log(upComingMovies);
 
   return (
-    <div className=" relative -mt-60">
+    <div className=" relative">
       <MovieList section={"Now Playing"} list={nowPlayingMovies}/>
       <MovieList section={"Popular"} list={popularMovies}/>
       <MovieList section={"Top Rated"} list={topRatedMovies}/>

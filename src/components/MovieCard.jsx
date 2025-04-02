@@ -4,9 +4,9 @@ const MovieCard = ({ posterPath }) => {
   if (!posterPath) return;
   
   return (
-    <div className="mr-3 w-40 ">
+    <div className="w-26 ">
       <img
-        className="w-full min-h-60 object-cover overflow-hidden"
+        className="w-full min-h-40 max-h-40 mb-4 object-cover overflow-hidden rounded-lg shadow-md shadow-neutral-800"
         src={IMAGE_CDN_LINK + posterPath}
         alt=""
       />

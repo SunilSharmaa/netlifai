@@ -35,7 +35,7 @@ const Header = () => {
       });
   };
   return (
-    <div className="absolute w-full  pt-4 pb-8 bg-gradient-to-b from-black z-10 ">
+    <div className="absolute w-full  pt-1 pb-8 bg-gradient-to-b from-black z-10 ">
       <div className="w-[90%] mx-auto flex justify-between items-center">
         <img
           onClick={navigateToHome}
