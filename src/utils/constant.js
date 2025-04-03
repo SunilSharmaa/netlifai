@@ -19,6 +19,10 @@ export const VIDEO_URL = (movieId)=> {
     return `https://api.themoviedb.org/3/movie/${movieId}/videos`;
 }
 
+export const MOVIE_IMAGES_URL = (movieId)=> {
+  return `https://api.themoviedb.org/3/movie/${movieId}/images`;
+}
+
 export const SEARCH_MOVIE_URL = (movieName)=> {
   return `https://api.themoviedb.org/3/search/movie?query=${movieName}&language=en-US&page=1`;
 }
