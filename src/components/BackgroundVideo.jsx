@@ -11,16 +11,16 @@ const BackgroundVideo = ({ movieId }) => {
   return (
     <>
       {trailerKey && (
-        <div className="relative w-full aspect-video">
+        <div className="relative w-full aspect-video overflow-hidden -top-10"> {/* Added overflow-hidden */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80"></div>
           <iframe
-            className=" w-full aspect-video"
+            className="w-full aspect-video object-cover"
             src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&loop=1&playlist=${trailerKey}&modestbranding=1&rel=0&controls=0&disablekb=1&showinfo=0&mute=1`}
             title="YouTube video player"
             allow="autoplay; encrypted-media"
+            style={{ border: 'none' }} // Optional: Remove iframe border
           ></iframe>
         </div>
-        
       )}
     </>
   );

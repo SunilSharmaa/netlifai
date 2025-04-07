@@ -22,7 +22,7 @@ const VideoTitle = ({ movieId, overview, language }) => {
   return (
     <div>
       
-    <div className="hidden lg:block absolute top-[60%] w-[90%]  left-[50%] -translate-x-[50%] ">
+    <div className="hidden lg:block absolute lg:top[40%] md:top-[60%] top-[50%] -translate-[50%] w-[90%]  left-[50%] -translate-x-[50%] ">
     <div className=" w-[35%]">
       {/* <h1 className="text-white text-3xl font-bold">{movieId}</h1> */}
       <img className="w-[70%]" src={logoPath} alt="imageLogo" />
