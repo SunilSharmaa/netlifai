@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import auth from "../utils/firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSearchPageActive } from "../redux/geminiSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   let dispatch = useDispatch();
@@ -11,8 +13,20 @@ const Header = () => {
   let isSearchPageActive = useSelector(
     (state) => state?.gemini?.isSearchPageActive
   );
-
   let navigate = useNavigate();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownTimer = useRef(null);
+
+  let handleMouseEnter = ()=> {
+    clearTimeout(dropdownTimer.current);
+    setIsDropdownOpen(true);
+  }
+
+  let handleMouseLeave = ()=> {
+    dropdownTimer.current = setTimeout(()=> {
+      setIsDropdownOpen(false);
+    },200)
+  }
 
   const navigateToPage = () => {
     dispatch(toggleSearchPageActive());
@@ -20,9 +34,9 @@ const Header = () => {
     isSearchPageActive ? navigate("/browse") : navigate("/aimoviesearch");
   };
 
-  const navigateToHome = () => {
-    navigate("/browse");
-  };
+  const toggleDropdown = ()=> {
+    setIsDropdownOpen(!isDropdownOpen);
+  }
 
   const userSignOut = () => {
     signOut(auth)
@@ -64,12 +78,46 @@ const Header = () => {
           )}
 
           {user && (
-            <button
+            <>
+              {/* <button
               className="text-[.7rem] sm:text-sm  bg-red-700 px-2 sm:px-3 md:px-4 py-1 text-white rounded cursor-pointer"
               onClick={userSignOut}
             >
               Sign out
-            </button>
+            </button> */}
+              <div className="relative"
+              onMouseEnter={()=> handleMouseEnter()}
+              onMouseLeave={()=> handleMouseLeave()}
+              onClick={toggleDropdown}
+              >
+                
+                  <div className="flex sm:space-x-2 items-center">
+                    <div className="rounded overflow-hidden relative">
+                      <img
+                        className="w-7 h-7 cursor-pointer "
+                        src="https://occ-0-56-55.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABUcrlRM8xyfkeGhiHqMFbXm9Fu-GwxdUMvjjlox3gnVq0BOeram_lFujgH17JFQ3H4_egJmrav0rdoUcSag5RXS9qSBfz9FgSw.png?r=bd7"
+                        alt="user-icon"
+                      ></img>
+                    </div>
+                    <div className="hidden sm:block">
+                    <FontAwesomeIcon
+                      className=" text-neutral-300 hover:text-neutral-100 cursor-pointer"
+                      icon={faCaretDown}
+                    />
+                    </div>
+                  </div>
+
+                  <div className={`bg-black/80  absolute mt-2 -ml-25 w-36 text-neutral-300 rounded overflow-hidden transition duration-200 ease-out ${ isDropdownOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} `}>
+                  <ul className="cursor-pointer pt-3">
+                    <li className="hover:underline w-full px-6 py-1">User</li>
+                    <li className="hover:underline w-full px-6 py-1">Accounts</li>
+                    <li className="hover:underline w-full px-6 py-1">Help Centre</li>
+                  </ul>
+                  <button className="text-center w-full py-2 cursor-pointer bg-black hover:bg-neutral-900 mt-2" onClick={userSignOut}>Sign out</button>
+                  </div>
+                
+              </div>
+            </>
           )}
         </div>
       </div>
