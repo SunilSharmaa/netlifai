@@ -7,11 +7,12 @@ const HeroSection = () => {
   const nowPlayingMovies = useSelector((store)=> store.movies.nowPlayingMovies);
   if(!nowPlayingMovies) return;
   
-  const {original_title, id, overview, original_language} = nowPlayingMovies[0];
+  const {original_title, id, overview, original_language, poster_path} = nowPlayingMovies[0];
+  // console.log(poster_path);
   
   return (
     <>
-      <BackgroundVideo movieId={id} language={original_language}/>
+      <BackgroundVideo movieId={id} poster={poster_path}/>
       <VideoTitle movieId={id} overview={overview} language={original_language}/>
     </>
   );
