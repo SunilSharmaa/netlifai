@@ -7,7 +7,7 @@ const ExploreSection = () => {
 
   return (
     <div className=" relative">
-      <div className="-mt-10 lg:-mt-48">
+      <div className=" lg:-mt-48">
       <MovieList section={"Now Playing"} list={nowPlayingMovies}/>
       <MovieList section={"Popular"} list={popularMovies}/>
       <MovieList section={"Top Rated"} list={topRatedMovies}/>
