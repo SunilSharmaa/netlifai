@@ -88,11 +88,11 @@ const Login = () => {
     }
   };
   return (
-    <div className="relative h-full w-full">
+    <div className="relative h-[100dvh] w-full">
       <img
         src="https://assets.nflxext.com/ffe/siteui/vlv3/04ef06cc-5f81-4a8e-8db0-6430ba4af286/web/IN-en-20250224-TRIFECTA-perspective_3a9c67b5-1d1d-49be-8499-d179f6389935_large.jpg"
         alt="background image"
-        className="h-screen w-full object-cover object-center"
+        className="h-[100dvh] w-full object-cover object-center"
       />
 
       <div className="absolute inset-0 bg-black opacity-85 sm:opacity-60"></div>
