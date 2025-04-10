@@ -43,7 +43,7 @@ const BackgroundVideo = ({ movieId, poster }) => {
             ></iframe>
           </div>
 
-          <div className="sm:hidden w-full h-[90dvh] bg-neutral-900 flex justify-center items-end px-4 pb-8">
+          <div className="sm:hidden w-full h-[90svh] bg-neutral-900 flex justify-center items-end px-4 pb-8">
             <div className="relative w-full max-w-[90vw] rounded-xl overflow-hidden  shadow-lg shadow-neutral-700">
               <img
                 src={IMAGE_CDN_LINK + poster}
