@@ -1,6 +1,6 @@
 import useTrailerVideoKey from "../hooks/useTrailerVideoKey";
 import { useSelector } from "react-redux";
-import { IMAGE_CDN_LINK, OPTIONS } from "../utils/constant";
+import { IMAGE_CDN_LINK, MOVIE_DETAILS_URL, OPTIONS } from "../utils/constant";
 import { useEffect, useState } from "react";
 import React from "react";
 
@@ -15,12 +15,17 @@ const BackgroundVideo = ({ movieId, poster }) => {
   useEffect(() => {
     const fetchMovieDetails = async () => {
       const data = await fetch(
-        "https://api.themoviedb.org/3/movie/950387?language=en-US",
+        MOVIE_DETAILS_URL(movieId),
         OPTIONS
       );
       const json = await data.json();
       const { genres } = json;
-      setGenres(genres);
+      if(genres.length > 3) {
+        const limitedGenres = genres?.slice(0,4)
+        setGenres(limitedGenres);
+      } else {
+        setGenres(genres);
+      }
     };
 
     fetchMovieDetails();
@@ -55,6 +60,7 @@ const BackgroundVideo = ({ movieId, poster }) => {
                   {genres &&
                     genres.map((gen, index) => (
                       <React.Fragment key={gen.id}>
+                        
                         <li>{gen.name}</li>
                         {index < genres.length - 1 && (
                           <span className="text-red-600 text-xl flex items-center">
