@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import AiModel from "../utils/gemini";
-import { OPTIONS, SEARCH_MOVIE_URL } from "../utils/constant";
+import { OPTIONS, PROMPT_RULE, SEARCH_MOVIE_URL } from "../utils/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { addMovieNameAndData } from "../redux/geminiSlice";
 
@@ -12,27 +12,51 @@ const useSearchResults = () => {
     if (!prompt) return;
 
     const generateResults = async () => {
-      const promptRule =
-        ". give multiple movie , only gives name and nothing else for example - Avatar, Spider man - likes this in single line because after that i will split that in a array which have coma, do not include";
-
       try {
-        const result = await AiModel.generateContent(prompt + promptRule);
-        const movieList = result.response
-          .text()
-          .split(",")
-          .map((m) => m.trim());
+        const result = await AiModel.generateContent(prompt + PROMPT_RULE);
 
-        const movieListData = await Promise.all(
-          movieList.map(async (movie) => {
-            const data = await fetch(SEARCH_MOVIE_URL(movie), OPTIONS);
-            return data.json();
+        let text = result.response.text();
+
+        const firstBrace = text.indexOf("{");
+        const lastBrace = text.lastIndexOf("}");
+        const jsonString = text.slice(firstBrace, lastBrace + 1);
+
+        const data = JSON.parse(jsonString);
+        let mName = Object.keys(data);
+        let mData = Object.values(data);
+
+        const moviesData = await Promise.all(
+          mData.map(async (movieList) => {
+            const result = await Promise.all(
+              movieList.map(async (movieName) => {
+                try {
+                  const data = await fetch(
+                    SEARCH_MOVIE_URL(movieName),
+                    OPTIONS
+                  );
+                  const json = await data.json();
+                  if (json.results.length !== 0) {
+                    const filterData = json.results.filter((movie) => {
+                      if (movie.title === movieName) {
+                        return true;
+                      }
+                    });
+
+                    return filterData[0] || null;
+                  }
+                } catch (error) {
+                  console.log(error);
+                }
+              })
+            );
+            return result.filter(Boolean);
           })
         );
 
         dispatch(
           addMovieNameAndData({
-            movieName: movieList,
-            movieData: movieListData,
+            movieName: mName,
+            movieData: moviesData,
           })
         );
       } catch (error) {
@@ -41,7 +65,7 @@ const useSearchResults = () => {
     };
 
     generateResults();
-  }, [prompt, dispatch]); // Add dependencies
+  }, [prompt, dispatch]);
 };
 
 export default useSearchResults;
