@@ -4,7 +4,6 @@ let validateCredential = (username, email, password) => {
 
   let isEmailValid = emailPattern.test(email);
   let isPasswordValid = passwordPattern.test(password);
-  console.log(email, password);
 
   if (!isEmailValid) {
     return "Invalid Email";

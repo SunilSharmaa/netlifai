@@ -8,6 +8,7 @@ import {
 import auth from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../redux/userSlice";
+import { BACKGROUND_IMAGE_URL } from "../utils/constant";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -90,7 +91,7 @@ const Login = () => {
   return (
     <div className="relative h-[100dvh] w-full">
       <img
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/04ef06cc-5f81-4a8e-8db0-6430ba4af286/web/IN-en-20250224-TRIFECTA-perspective_3a9c67b5-1d1d-49be-8499-d179f6389935_large.jpg"
+        src={BACKGROUND_IMAGE_URL}
         alt="background image"
         className="h-[100dvh] w-full object-cover object-center"
       />
